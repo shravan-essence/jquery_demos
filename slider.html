@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Slider Plugin JQuery</title>
+		
+		<!--Bootstrap CDN link-->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+	
+		<!--JQuery CDN link-->
+		<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+		<!--JQuery Slick plugin CDN link-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	
+		<!--JQuery Slick css plugin CDN link-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	
+		<!--JQuery Slick  css plugin CDN link-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+		<style type="text/css">
+			img {
+				width:100%;
+				height: 500px;
+				margin-top: 10px;
+			}
+			.slick-prev {
+			  color: black;
+			  left: 0;
+			}
+			.slick-next {
+			  color: black;
+			  right:0;
+			}
+			.slick-prev:before {
+			  color: black;
+			}
+			.slick-next:before {
+			  color: black;
+			}
+			
+			.slider{
+		   	width:100%;
+		    margin:0 auto;
+		  }
+			.slick-arrow {
+				z-index: 2;
+			}
+
+			.slider img {
+				width: 100%;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row slider">
+				<div class="col-md-12 col-sm-12">
+					<img src="https://kenwheeler.github.io/slick/img/fonz1.png">
+				</div>
+				<div class=" col-sm-12 col-md-12">
+					<img src="https://kenwheeler.github.io/slick/img/fonz2.png">
+				</div>
+				<div class="col-sm-12 col-md-12">
+					<img src="https://kenwheeler.github.io/slick/img/fonz3.png">
+				</div>
+				<div class="col-sm-12 col-md-12">
+					<img src="https://kenwheeler.github.io/slick/img/fonz1.png">
+				</div>
+				<div class="col-sm-12 col-md-12">
+					<img src="https://kenwheeler.github.io/slick/img/fonz2.png">
+				</div>
+				
+				
+			</div>
+		</div>
+		<div class="container">
+			<div class="row center">
+				<div class="col-md-12 col-sm-12">
+					<img src="https://kenwheeler.github.io/slick/img/fonz1.png">
+				</div>
+				<div class=" col-sm-12 col-md-12">
+					<img src="https://kenwheeler.github.io/slick/img/fonz2.png">
+				</div>
+				<div class="col-sm-12 col-md-12">
+					<img src="https://kenwheeler.github.io/slick/img/fonz3.png">
+				</div>
+				<div class="col-sm-12 col-md-12">
+					<img src="https://kenwheeler.github.io/slick/img/fonz1.png">
+				</div>
+				<div class="col-sm-12 col-md-12">
+					<img src="https://kenwheeler.github.io/slick/img/fonz2.png">
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+  		$('.slider').slick({
+  			dots: true,
+  			infinite: true,
+  			speed: 300,
+  			customPaging : function(slider, i) {
+			    var thumb = $(slider.$slides[i]).data();
+			    return '<a class="dot" style="text-decoration:none; color:black;">'+i+'</a>';
+				},
+				arrows:true,
+  			responsive: [
+    		{
+    	 		breakpoint: 1024,
+     				settings: {
+       				slidesToShow: 3,
+       				slidesToScroll: 3,
+       				infinite: true,
+       				dots: true
+      			}
+    		},
+    		{
+     			breakpoint: 600,
+      			settings: {
+       				slidesToShow: 2,
+       				slidesToScroll: 2
+      			}
+   			},
+    		{
+      		breakpoint: 480,
+      			settings: {
+       				slidesToShow: 1,
+       				slidesToScroll: 1,
+       				dots:false
+     				}
+   			}
+ 				]
+			});
+			$('.center').slick({
+  			centerMode: true,
+  			centerPadding: '60px',
+  			slidesToShow: 3,
+  			dots:true,
+  			arrows:false,
+  			autoplay:true,
+  			autoplaySpeed:2000,
+  			responsive: [
+    		{
+     			breakpoint: 768,
+     				settings: {
+       				arrows: false,
+       				centerMode: true,
+       				centerPadding: '40px',
+       				slidesToShow: 3
+     				}
+    		},
+    		{
+     			breakpoint: 480,
+     				settings: {
+       				arrows: false,
+       				centerMode: true,
+       				centerPadding: '40px',
+       				slidesToShow: 1
+     				}
+   			}
+  			]
+			});
+		</script>
+	</body>
+</html>
