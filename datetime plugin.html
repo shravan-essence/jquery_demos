@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Datepicker - Select a Date Range</title>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <!-- <link rel="stylesheet" href="https://resources/demos/style.css"> -->
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  </head>
+<body>
+  <label for="date">Date</label>
+  <input type="text" id="date" name="date">
+  <br><br>
+  <h4>Date Range Selection</h4>
+  <label for="from">From</label>
+  <input type="text" id="from" name="from">
+  <label for="to">to</label>
+  <input type="text" id="to" name="to">
+  <br>
+  <br>
+  <label for="restrict">to</label>
+  <input type="text" id="restrict" name="restrict">
+  <br><br>
+
+  <p>Date: <input type="text" id="datepicker">&#xA0;<input type="text" id="alternate" size="30"></p>
+ 
+   <script type="text/javascript">
+    $( function() {
+      var dateFormat = "mm/dd/yy",
+        from = $("#from").datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            changeYear: true,
+            numberOfMonths: 3
+          }).on("change", function() {
+            to.datepicker("option", "minDate", getDate(this));
+          }),
+        to = $("#to").datepicker({
+          defaultDate: "+1w",
+          changeMonth: true,
+          numberOfMonths: 1
+        }).on( "change", function() {
+          from.datepicker("option", "maxDate", getDate(this));
+        });
+   
+      function getDate(element) {
+        var date;
+        try {
+          date = $.datepicker.parseDate(dateFormat, element.value);
+        } catch(error) {
+          date = null;
+        }
+        return date;
+      }
+      $("#restrict").datepicker({
+        minDate: "Today",
+        maxDate: +15
+      });
+      $("#date").datepicker({
+        changeMonth: true,
+        changeYear: true,
+      });
+      $("#datepicker").datepicker({
+        altField: "#alternate",
+        altFormat: "dd/mm/yy"
+      });
+    });
+   </script>
+</body>
+</html>

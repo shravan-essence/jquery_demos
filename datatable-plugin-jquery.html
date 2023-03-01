@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Jquery Datatable</title>
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+	<link href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css" rel="stylesheet">
+	
+<style type="text/css">
+	.dataTable {
+		font-style: italic;
+	}
+	.dataTable tr:hover {
+		background-color: gray;
+		color: black;
+	}
+</style>
+</head>
+<body>
+	<table id="Mytable" class="display" style="width:100%">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Last Name</th>
+				<th>Age</th>
+				<th>Birthdate</th>
+				<th>Designation</th>
+			</tr>
+		</thead>
+	</table>
+	<script>
+		$("#Mytable").DataTable({
+			ajax: "data.txt",
+	    columns: [  
+        {
+        	data: "Name"
+        },
+        {
+        	data: "LastName"
+        },
+        {
+        	data: "Age"
+        },
+        {
+        	data: "Birthdate"
+        },
+        {
+        	data: "Designation"
+        }
+      ],
+      "pageLength": 5,
+      "lengthMenu": [5, 10, 15, 20, 25, 50 ],
+      "language": {
+      	"decimal":        "",
+		    "emptyTable":     "No data available in table",
+		    "info":           "Showing _START_ to _END_ of _TOTAL_ entries",
+		    "infoEmpty":      "Showing 0 to 0 of 0 entries",
+		    "infoFiltered":   "(filtered from _MAX_ total entries)",
+		    "infoPostFix":    "",
+		    "thousands":      ",",
+		    "lengthMenu":     "Show _MENU_ entries",
+		    "loadingRecords": "Loading...",
+		    "processing":     "",
+		    "search":         "Search:",
+		    "zeroRecords":    "No matching records found",
+		    "paginate": {
+		        "first":      "First",
+		        "last":       "Last",
+		        "next":       "Next",
+		        "previous":   "Previous"
+		    },
+		    "aria": {
+		        "sortAscending":  ": activate to sort column ascending",
+		        "sortDescending": ": activate to sort column descending"
+    }
+      }
+		});
+	</script>
+</body>
+</html>

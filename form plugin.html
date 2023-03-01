@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Jquery Form Plugin</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+
+	<style>
+		input[type="text"], input[type="email"], input[type="password"] {
+			width: 50%;
+			
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="container">
+		<fieldset>
+			<legend>SignUp Form</legend>
+	<form id="myform" action="google.com">
+		
+			<label for="fname" class="form-text" >First Name</label>
+			<input id="fname" type="text" class="form-control" placeholder="Enter Your First Name Here" name="fname"><br>
+
+			<label for="lname" class="form-text">Last Name</label>
+			<input type="text" name="lname" class="form-control" id="lname" placeholder="Enter Your Last Name Here"><br>
+			
+			<label for="username" class="form-text">Username</label>
+			<input type="text" name="username" class="form-control" id="username" placeholder="Enter Your Username"><br>
+
+			<label for="email" class="form-text">Email</label>
+			<input type="email" name="email" class="form-control" id="email" placeholder="Enter Your Email Here"><br>
+
+			<label for="password1" class="form-text">Password</label>
+			<input type="password" name="password1"  class="form-control" id="password1" placeholder="Enter Your Password"><br><br>
+
+			<label for="password2" class="form-text">Confirm Password</label>
+			<input type="password" name="password2" class="form-control" id="password2" placeholder="Confirm Your Password"><br>
+
+
+			<input type="submit" name="submit" class="btn btn-primary">
+		
+	</form>
+	</fieldset>
+</div>
+
+<script type = "text/javascript" language = "javascript">
+	$(document).ready(function(){
+
+	$("#myform").validate({
+		rules: {
+			fname:{
+				pattern: /^[a-zA-Z\s]+$/,
+				required: true,
+				minlength: 3
+				
+			},
+			lname: "required",
+			username: {
+				required: true,
+				minlength: 4
+			},
+			email: {
+				required: true,
+				email: true
+			},
+			password1: {
+				required: true,
+				minlength: 6
+			},
+			password2: {
+				required:true,
+				minlength: 6,
+				equalTo : "#password1"
+			}
+		},
+		messages:{
+			fname: {
+				pattern:"Enter only letters",
+				required:"Please enter your first name",
+				minlength: "Length should be min 3"
+				
+			},
+			lname: "Please enter your last name",
+			username: {
+				required: "Please enter username",
+				minlength: "Length should be 4"
+			},
+			email: {
+				required: "Please enter email",
+				email: "Please enter valid email"
+			},
+			password1: {
+				required: "Please enter password",
+				minlength: "Length should be 6"
+			},
+			password2: {
+				required: "Please enter confirm password",
+				minlength: "Length should be 6",
+				equalTo: "Please enter same password as above"
+			}
+		}
+	});
+	$("#username").focus(function(){
+		var firstname = $("#fname").val();
+		var lastname = $("#lname").val();
+
+		if(firstname && lastname && !this.value){
+			this.value = firstname+"."+lastname; 
+		}
+	});
+});
+</script>
+
+</body>
+</html>

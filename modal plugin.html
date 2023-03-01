@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Modal example</title>
+
+		<!--Bootstrap CDN link-->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+	
+		<!--JQuery CDN link-->
+		<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+		<!--JQuery validation CDN links-->
+		<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+		
+		<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+		
+		<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+
+		<!--JQuery datepicker CDN links-->
+		<link href=
+		'https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css'
+          rel='stylesheet'>
+      
+	    <script src=
+		"https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" >
+	    </script>
+</head>
+<body>
+		<div class="container">
+			<div class="mymodal">
+				<h1>Click on the button  to open modal</h1>
+				<button class="btn btn-success" data-toggle="modal" data-target="#Mymodal">Register</button>
+			</div>
+		</div><br>
+		
+		<div class="modal fade" id="Mymodal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+					
+						<h3 class="modal-title">This is heading</h3>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+					<div class="modal-body">
+						<p>
+							Hello Guys this is the modal you can close by close button.
+						</p>
+					</div>
+					<div class="modal-footer">
+						<button type = "button" class = "btn btn-default" data-dismiss = "modal">
+               								Close
+            			</button>
+						<button class="btn btn-success">submit</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="register">
+				<button type="button" class="btn btn-success" data-toggle = "modal" data-target = "#registerForm">click here</button>
+			</div>
+		</div>
+		<div class="modal fade bd-example-modal-lg" id="registerForm">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1>Register Form</h1>
+						<button class="btn close" data-dismiss = "modal" >X</button>
+					</div>
+					<div class="modal-body">
+						<form id="myForm">
+							<label class="form-text" for="name">Name</label>
+							<input type="text" class="form-control" name="name" id="name">
+							<br>
+							<label for="email" class="form-text">Email</label>
+							<input type="email" class="form-control" name="email" id="email">
+							<br>
+							<label for="mobile" class="form-text">Mobile No.</label>
+							<input type="text" class="form-control" name="mobile" id="mobile" maxlength="10">
+							<br>
+							<label class="form-text" for="pass">Password</label>
+							<input type="password" class="form-control" name="pass" id="pass">
+							<br>
+							<label class="form-text" for="pass1">Confirm Password</label>
+							<input type="password" class="form-control" name="pass1" id="Pass1">
+							<br>
+							<label for="bdate" class="form-text">Birthdate</label>
+							<input type="text" name="bdate" id="bdate" class="form-control" >
+							<br>
+							<input type="submit" class="btn btn-success" name="submit" value="Submit">
+							<button type="button" class="btn close" data-dismiss = "modal">Close</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!--JQuery bootstrap plugin CDN link-->
+  		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js">
+    	</script>
+    	
+   
+	   <script type="text/javascript">
+	   	$(document).ready(function(){
+	   		$("#myForm").validate({
+	   			rules :{
+	   				name:{
+	   					required: true,
+	   					minlength: 4,
+	   					pattern: /^[a-zA-Z\s]+$/ 
+	   				},
+	   				email: {
+	   					required: true,
+	   					email: true
+	   				},
+	   				mobile: {
+	   					required:true,
+	   					maxlength: 10
+	   				},
+	   				pass : {
+	   					required: true,
+	   					minlength: 6	
+	   				},
+	   				pass1: {
+	   					required: true,
+	   					minlength: 6,
+	   					equalTo:"#pass"
+	   				}
+	   			},
+	   			messages: {
+	   				name: {
+	   					required: "Please enter your name",
+	   					minlength: "Please enter minimum 4 letters",
+	   					pattern: "Please enter only letters"
+	   				},
+	   				email: {
+	   					required: "Please enter your email",
+	   					email:"Please enter valid email"
+	   				},
+	   				mobile: {
+	   					required:"Please enter your mobile number",
+	   					tel:"please enter valid number",
+	   					maxlength:"please enter only 10 numbers"
+	   				},
+	   				pass: {
+	   					required:"Please enter your password",
+	   					minlength:"Please enter minimum 6 characters"
+	   				},
+	   				pass1: {
+	   					required:"Please confirm your password",
+	   					minlength:"Please enter minimum 6 characters",
+	   					equalTo :"Please enter same password as above"
+	   				}
+	   			}
+	   		});
+
+	   		$("#bdate").datepicker();
+	   	});
+
+	   </script>
+</body>
+</html>
