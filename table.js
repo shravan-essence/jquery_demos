@@ -88,13 +88,54 @@ $(document).ready(function(){
       $(this).addClass('selected');
       showButtons()
       items = []
-      $($(this).find('td')).each(function () {
-        items.push($(this).html());
-      })
+     // $($(this).find('td')).each(function () {
+       // items.push($(this).html());
+      //})
       //alert(items)
+      let updatedId 
+      let updatedName 
+      let updatedLastName 
+      let updatedAge
+      let updatedBirthdate
+      let updatedDesignation
       selected_Id = $(this).find('.sorting_1').html()
-      console.log(selected_Id)
-      select = true;
+      $(this).closest('tr').attr('contenteditable', 'true')
+      if($(this).attr('contenteditable')){
+        $($(this).find('td')).each(function () {
+          items.push($(this).html());
+          updatedId = items[0]
+          updatedName = items[1]
+          updatedLastName = items[2]
+          updatedAge = items[3]
+          updatedBirthdate = items[4]
+          updatedDesignation = items[5]
+        })
+        $(this).closest('tr').blur(function(){
+          datatable.row('.selected').remove().draw(false);
+          //alert(selected_Id)
+          let after_delete = JSON.parse(localStorage.getItem('mydata')).filter(function (obj) {
+            return obj.Id !== selected_Id;
+            alert(selected_Id)
+          })
+          localStorage.removeItem('mydata')
+          localStorage.setItem("mydata", JSON.stringify(after_delete))
+          var updatedData = JSON.parse(localStorage.getItem("mydata"))
+          updatedData.push({
+          Id: updatedId,
+          Name: updatedName,
+          LastName: updatedLastName,
+          Age: updatedAge,
+          Birthdate: updatedBirthdate,
+          Designation: updatedDesignation
+          })
+          localStorage.removeItem('mydata')
+          localStorage.setItem("mydata", JSON.stringify(updatedData))
+          alert("updated")
+          window.location.reload()
+        })
+        
+      }
+      
     }
   });
   function showButtons() {
@@ -139,7 +180,7 @@ $(document).ready(function(){
       let updatedAge = $("#editDataModal #age").val()
       let updatedBirthdate =  $("#editDataModal #bdate").val()
       let updatedDesignation = $("#editDataModal #des").val()
-      alert(datatable.row().Id);
+      
       //stroing data into new var without selected row and deleting old stored data 
       datatable.row('.selected').remove().draw(false);
       //alert(selected_Id)
