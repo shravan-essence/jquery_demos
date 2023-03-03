@@ -5,53 +5,57 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Jquery Datatable</title>
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<!-- Datatable Plugins -->
 	<script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.13.2/datatables.min.js"></script>
 	<link href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css" rel="stylesheet">
 	<script type="text/javascript" src="https://cdn.datatables.net/select/1.6.1/js/dataTables.select.min.js"></script>
+	<!-- Bootstrap CDN -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
- 
-<style type="text/css">
-	.dataTable {
-		font-style: italic;
-		border: 1px solid black;
-	}
-	.dataTable tr:hover {
-		background-color: gray;
-		color: black;
-	}
-	.crudbtn div {
-		display: inline;
-		margin: 10px;
-	}
-	.crudbtn {
-		padding: 20px;
-	}
-</style>
+ 	<!-- Datepicker plugin -->
+  <script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
+  <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+		.dataTable {
+			font-style: italic;
+			border: 1px solid black;
+		}
+		.dataTable tr:hover {
+			background-color: gray;
+			color: black;
+		}
+		.crudbtn div {
+			display: inline;
+			margin: 10px;
+		}
+		.crudbtn {
+			padding: 20px;
+		}
+	</style>
 </head>
 <body>
 	<div class="container">
 		<!-- CRUD Buttons -->
 		<div class="crudbtn">
-			<div class="newOrderbtn">
-				<button type="button" data-bs-toggle="modal" data-bs-target="#newOrder" class="btn btn-success">New Order
+			<div class="newbtn">
+				<button type="button" data-bs-toggle="modal" data-bs-target="#new_Data_btn" id="newDatabtn" class="btn btn-success">New Order
 				</button>
 			</div>
-			<div class="deleteOrder">
-				<button type="button" data-bs-toggle="modal" id="delbtn" data-bs-target="#deleteOrder" class="btn btn-danger" >
+			<div class="deletebtn">
+				<button type="button" data-bs-toggle="modal" id="delete_Data_btn" data-bs-target="#deleteDataModal" class="btn btn-danger" >
 					Delete Order
 				</button>
 			</div>
 			<div class="editOrder">
-				<button type="button" data-bs-toggle="modal" id="editbtn" data-bs-target="#editOrder" class="btn btn-primary" >Edit Order</button>
+				<button type="button" data-bs-toggle="modal" id="edit_Data_btn" data-bs-target="#editDataModal" class="btn btn-primary" >Edit Order</button>
 			</div>
 		</div>
 		<!-- End of CRUD buttons -->
 
 		<!-- CRUD Modals -->
 		<!-- New Order Modal -->
-		<div class="newOrder-modal">
-			<div id="newOrder" class="modal fade">
+		<div class="newData-modal">
+			<div id="new_Data_btn" class="modal fade">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -60,46 +64,44 @@
 						</div>
 						<div class="modal-body">
 							<form>
-								<label for="id" class="form-text">Id</label>
-								<input type="text" name="id" id="id" class="form-control" value="">
-								<label for="name" class="form-text">Name</label>
-								<input type="text" name="name" id="name" class="form-control">
-								<label for="lastname" class="form-text">Last Name</label>
-								<input type="text" name="lastname" id="lastname" class="form-control">
-								<label for="age" class="form-text">Age</label>
-								<input type="text" name="age" id="age" class="form-control">
-								<label for="bdate" class="form-text">Birthdate</label>
-								<input type="date" name="bdate" id="bdate" class="form-control">
-								<label for="des" class="form-text">Designation</label>
-								<input type="text" name="des" id="des" class="form-control">
+								<label for="newid" class="form-text">Id</label>
+								<input type="text" name="id" id="newid" class="form-control">
+								<label for="newname" class="form-text">Name</label>
+								<input type="text" name="name" id="newname" class="form-control">
+								<label for="newlastname" class="form-text">Last Name</label>
+								<input type="text" name="lastname" id="newlastname" class="form-control">
+								<label for="newage" class="form-text">Age</label>
+								<input type="text" name="age" id="newage" class="form-control">
+								<label for="newbdate" class="form-text">Birthdate</label>
+								<input type="text" name="bdate" id="newbdate" class="form-control">
+								<label for="newdes" class="form-text">Designation</label>
+								<input type="text" name="des" id="newdes" class="form-control">
 							</form>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
-							<button type="button" id="addOrder" class="btn btn-success">Submit</button>
+							<button type="button" class="btn btn-default" data-bs-dismiss="modal">Cancel</button>
+							<button type="button" id="add_New_Data" class="btn btn-success">Add</button>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
 		<!-- Delete Modal -->
-		<div class="deleteOrder-modal">
-			<div id="deleteOrder" class="modal">
+		<div class="deleteData-modal">
+			<div id="deleteDataModal" class="modal">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
 							<div class="modal-title w-100">
 								<h2>Are You Sure?</h2>
-								
 							</div>
 						</div>
 						<div class="modal-body">
-							<h1>Do you really want to delete this data? This process won't be undone.</h1>
+							<h2>Do you really want to delete this data? This process won't be undone.</h2>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-bs-dismiss="modal">Cancel</button>
-							<button type="button" id="deleteBtn" class="btn btn-danger">Delete</button>
+							<button type="button" id="delete_Data" class="btn btn-danger">Delete</button>
 						</div>
 					</div>
 				</div>
@@ -107,8 +109,8 @@
 		</div>
 
 		<!-- Edit Modal -->
-		<div class="editOrder-modal">
-			<div id="editOrder" class="modal">
+		<div class="editData-modal">
+			<div id="editDataModal" class="modal">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -126,14 +128,14 @@
 								<label for="age" class="form-text">Age</label>
 								<input type="text" name="age" id="age" class="form-control" value="">
 								<label for="bdate" class="form-text">Birthdate</label>
-								<input type="date" name="bdate" id="bdate" class="form-control" value="">
+								<input type="text" name="bdate" id="bdate" class="form-control" value="">
 								<label for="des" class="form-text">Designation</label>
 								<input type="text" name="des" id="des" class="form-control" value="">
 							</form>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-success">Submit</button>
+							<button type="button" class="btn btn-default" data-bs-dismiss="modal">Cancel</button>
+							<button type="button" id="update_Data" class="btn btn-success">Update</button>
 						</div>
 					</div>
 				</div>
@@ -157,7 +159,21 @@
 	<script type="module" src="table.js"></script>
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
-		<!-- <script>
+<!--<script type="text/javascript">
+ 		$( function() {
+	 		$("#newbdate").datepicker({
+	 			changeMonth: true,
+	      changeYear: true,
+	      dateFormat: "dd MM yy"
+	    });
+	    $("#bdate").datepicker({
+	 			changeMonth: true,
+	      changeYear: true,
+	      dateFormat: "dd MM yy"
+	    });
+	  });
+ 	</script>
+ <script>
 		var editor;
 		$(document).ready(function(){
 			$("#Mytable").on("click", 'td', function(){
