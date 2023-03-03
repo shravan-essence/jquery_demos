@@ -44,7 +44,9 @@ $(document).ready(function(){
     $("#newage").val("")
     $("#newbdate").val("")
     $("#newdes").val("")
+    
     $("#add_New_Data").click(function (e) {
+      alert("Entereddd")
       var addid = $("#newid").val()
       var addName = $("#newname").val()
       var addLastname = $("#newlastname").val()
@@ -115,7 +117,6 @@ $(document).ready(function(){
           //alert(selected_Id)
           let after_delete = JSON.parse(localStorage.getItem('mydata')).filter(function (obj) {
             return obj.Id !== selected_Id;
-            alert(selected_Id)
           })
           localStorage.removeItem('mydata')
           localStorage.setItem("mydata", JSON.stringify(after_delete))
@@ -155,7 +156,7 @@ $(document).ready(function(){
         return obj.Id !== selected_Id;
       })
       localStorage.removeItem('mydata')
-      localStorage.setItem("mydata", JSON.stringify(afters_delete))
+      localStorage.setItem("mydata", JSON.stringify(after_delete))
       window.location.reload()
     })
   });

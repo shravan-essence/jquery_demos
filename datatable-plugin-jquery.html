@@ -15,6 +15,12 @@
  	<!-- Datepicker plugin -->
   <script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
   <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
+	<!--JQuery validation CDN links-->
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>	
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+
 	<style type="text/css">
 		.dataTable {
 			font-style: italic;
@@ -63,25 +69,27 @@
 								<button class="btn btn-default close" data-bs-dismiss="modal">X</button>
 						</div>
 						<div class="modal-body">
-							<form>
+							<form id="myForm" method="POST">
 								<label for="newid" class="form-text">Id</label>
-								<input type="text" name="id" id="newid" class="form-control">
+								<input type="text" name="id" id="newid" class="form-control"><br>
 								<label for="newname" class="form-text">Name</label>
-								<input type="text" name="name" id="newname" class="form-control">
+								<input type="text" name="name" id="newname" class="form-control"><br>
 								<label for="newlastname" class="form-text">Last Name</label>
-								<input type="text" name="lastname" id="newlastname" class="form-control">
+								<input type="text" name="lastname" id="newlastname" class="form-control"><br>
 								<label for="newage" class="form-text">Age</label>
-								<input type="text" name="age" id="newage" class="form-control">
+								<input type="text" name="age" id="newage" class="form-control"><br>
 								<label for="newbdate" class="form-text">Birthdate</label>
-								<input type="text" name="bdate" id="newbdate" class="form-control">
+								<input type="text" name="bdate" id="newbdate" class="form-control"><br>
 								<label for="newdes" class="form-text">Designation</label>
-								<input type="text" name="des" id="newdes" class="form-control">
+								<input type="text" name="des" id="newdes" class="form-control"><br>
+								<input type="submit" id="add_New_Data" class="btn btn-success" name="submit" value="Submit">
+							<button type="button"  class="btn close" data-bs-dismiss = "modal">Close</button>
 							</form>
 						</div>
-						<div class="modal-footer">
+					  <!-- <div class="modal-footer">
 							<button type="button" class="btn btn-default" data-bs-dismiss="modal">Cancel</button>
-							<button type="button" id="add_New_Data" class="btn btn-success">Add</button>
-						</div>
+							<input type="submit" id="add_New_Data" class="btn btn-success" value="Add">
+						</div>  -->
 					</div>
 				</div>
 			</div>
@@ -158,7 +166,60 @@
 	</div>
 	<script type="module" src="table.js"></script>
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
+ <script type="text/javascript">
+ 	$(document).ready(function(){
+  $("#myForm").validate({
+    rules :{
+      id:{
+        required: true
+      },
+      name:{
+        required: true,
+        minlength: 4,
+        pattern: /^[a-zA-Z\s]+$/ 
+      },
+      lastname:{
+        required: true,
+        minlength: 4,
+        pattern: /^[a-zA-Z\s]+$/ 
+      },
+      age: {
+        required: true
+      },
+      bdate: {
+        required:true
+      },
+      des: {
+        required: true
+      }
+    },
+    messages: {
+      id: {
+        required: "Please enter Id"
+      },
+      name: {
+        required: "Please enter first name",
+        minlength: "Please enter minimum 4 letters",
+        pattern: "Please enter only letters"
+      },
+      lastname: {
+        required: "Please enter last name",
+        minlength: "Please enter minimum 4 letters",
+        pattern: "Please enter only letters"
+      },
+      age: {
+        required: "Please enter age"
+      },
+      bdate: {
+        required:"Please enter birthdate"
+      },
+      des: {
+              required:"Please enter designation"
+      }
+    }
+  });
+});
+ </script> -->
 <!--<script type="text/javascript">
  		$( function() {
 	 		$("#newbdate").datepicker({
