@@ -45,33 +45,44 @@ $(document).ready(function(){
     $("#newbdate").val("")
     $("#newdes").val("")
     
-    $("#add_New_Data").click(function (e) {
-      alert("Entereddd")
-      var addid = $("#newid").val()
-      var addName = $("#newname").val()
-      var addLastname = $("#newlastname").val()
-      var addAge = $("#newage").val()
-      var addBdate = $("#newbdate").val()
-      var addDes = $("#newdes").val()
-      console.log(addName);
-      console.log(addLastname);
-      console.log(addAge);
-      console.log(addBdate);
-      console.log(addDes);
+    $("#new_data_btn .modal-header .modal-title").css({
+      "text-align":"center",
+      "background-color":"lightblue",
+      "color":"white"
+    })
+    $("#new_data_btn .modal-content").css({
+      "margin":"0",
+      "background-color":"lightblue"
+    })
 
-      mydata.push({
-        Id: addid,
-        Name: addName,
-        LastName: addLastname,
-        Age: addAge,
-        Birthdate: addBdate,
-        Designation: addDes
-      })
-      localStorage.removeItem("mydata")
-      localStorage.setItem("mydata", JSON.stringify(mydata));
-      alert("New order created")
-      e.preventDefault()
-      location.reload()
+    $("#add_new_data").click(function (e) {
+      if ($("#myForm").valid()){
+        var addid = $("#newid").val()
+        var addName = $("#newname").val()
+        var addLastname = $("#newlastname").val()
+        var addAge = $("#newage").val()
+        var addBdate = $("#newbdate").val()
+        var addDes = $("#newdes").val()
+        console.log(addName);
+        console.log(addLastname);
+        console.log(addAge);
+        console.log(addBdate);
+        console.log(addDes);
+
+        mydata.push({
+          Id: addid,
+          Name: addName,
+          LastName: addLastname,
+          Age: addAge,
+          Birthdate: addBdate,
+          Designation: addDes
+        })
+        localStorage.removeItem("mydata")
+        localStorage.setItem("mydata", JSON.stringify(mydata));
+        alert("New order created")
+        e.preventDefault()
+        location.reload()
+      }
     });
   });
   //selection of row
@@ -140,16 +151,20 @@ $(document).ready(function(){
     }
   });
   function showButtons() {
-    $('#delete_Data_btn').attr('disabled', false)
-    $('#edit_Data_btn').attr('disabled', false)
+    $('#delete_data_btn').attr('disabled', false)
+    $('#edit_data_btn').attr('disabled', false)
   }
   function hideButtons() {
-    $('#delete_Data_btn').attr('disabled', true)
-    $('#edit_Data_btn').attr('disabled', true)
+    $('#delete_data_btn').attr('disabled', true)
+    $('#edit_data_btn').attr('disabled', true)
   }
  //Delete selected data
-  $('#delete_Data_btn').click(function () {
-    $("#delete_Data").click(function () {
+  $('#delete_data_btn').click(function () {
+    $("#deleteDataModal .modal-header").css({
+      "background-color": "red",
+      "color": "white"
+    });
+    $("#delete_data").click(function () {
       datatable.row('.selected').remove().draw(false);
       console.log(selected_Id)
       let after_delete = JSON.parse(localStorage.getItem('mydata')).filter(function (obj) {
@@ -162,7 +177,7 @@ $(document).ready(function(){
   });
 
   //Edit selected Data
-  $("#edit_Data_btn").click(function () {
+  $("#edit_data_btn").click(function () {
     $("#editDataModal #id").val(items[0])
     $("#editDataModal #name").val(items[1])
     $("#editDataModal #lastname").val(items[2])
@@ -172,7 +187,7 @@ $(document).ready(function(){
     //alert(items)
   });
 
-  $("#update_Data").click(function(){
+  $("#update_data").click(function(){
     if(window.confirm("Are you sure?")){
       //storing updated values to the variables
       let updatedId = $("#editDataModal #id").val()

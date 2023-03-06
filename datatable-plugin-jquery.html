@@ -37,6 +37,17 @@
 		.crudbtn {
 			padding: 20px;
 		}
+		.deleteData-modal h2 {
+			font-family:serif;
+			font-size: 24px;
+		}
+		#new_data_btn .closeBtn:hover{
+			color: white;
+		}
+		.error {
+			color: red;
+		}
+
 	</style>
 </head>
 <body>
@@ -44,16 +55,16 @@
 		<!-- CRUD Buttons -->
 		<div class="crudbtn">
 			<div class="newbtn">
-				<button type="button" data-bs-toggle="modal" data-bs-target="#new_Data_btn" id="newDatabtn" class="btn btn-success">New Order
+				<button type="button" data-bs-toggle="modal" data-bs-target="#new_data_btn" id="newDatabtn" class="btn btn-success">New Order
 				</button>
 			</div>
 			<div class="deletebtn">
-				<button type="button" data-bs-toggle="modal" id="delete_Data_btn" data-bs-target="#deleteDataModal" class="btn btn-danger" >
+				<button type="button" data-bs-toggle="modal" id="delete_data_btn" data-bs-target="#deleteDataModal" class="btn btn-danger">
 					Delete Order
 				</button>
 			</div>
 			<div class="editOrder">
-				<button type="button" data-bs-toggle="modal" id="edit_Data_btn" data-bs-target="#editDataModal" class="btn btn-primary" >Edit Order</button>
+				<button type="button" data-bs-toggle="modal" id="edit_data_btn" data-bs-target="#editDataModal" class="btn btn-primary" >Edit Order</button>
 			</div>
 		</div>
 		<!-- End of CRUD buttons -->
@@ -61,12 +72,12 @@
 		<!-- CRUD Modals -->
 		<!-- New Order Modal -->
 		<div class="newData-modal">
-			<div id="new_Data_btn" class="modal fade">
+			<div id="new_data_btn" class="modal fade" data-bs-backdrop="static">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
-								<h2 class="modal-title">Add New Order</h2>
-								<button class="btn btn-default close" data-bs-dismiss="modal">X</button>
+								<h2 class="modal-title w-100">Add New Order</h2>
+								<button class="btn btn-default closeBtn" data-bs-dismiss="modal">X</button>
 						</div>
 						<div class="modal-body">
 							<form id="myForm" method="POST">
@@ -82,13 +93,15 @@
 								<input type="text" name="bdate" id="newbdate" class="form-control"><br>
 								<label for="newdes" class="form-text">Designation</label>
 								<input type="text" name="des" id="newdes" class="form-control"><br>
-								<input type="submit" id="add_New_Data" class="btn btn-success" name="submit" value="Submit">
-							<button type="button"  class="btn close" data-bs-dismiss = "modal">Close</button>
+								<div class="modal-footer">
+									<input type="submit" id="add_new_data" class="btn btn-success" name="submit" value="Submit">
+									<button type="button"  class="btn closeBtn" data-bs-dismiss = "modal">Close</button>
+								</div>
 							</form>
 						</div>
 					  <!-- <div class="modal-footer">
 							<button type="button" class="btn btn-default" data-bs-dismiss="modal">Cancel</button>
-							<input type="submit" id="add_New_Data" class="btn btn-success" value="Add">
+							<input type="submit" id="add_new_data" class="btn btn-success" value="Add">
 						</div>  -->
 					</div>
 				</div>
@@ -96,20 +109,20 @@
 		</div>
 		<!-- Delete Modal -->
 		<div class="deleteData-modal">
-			<div id="deleteDataModal" class="modal">
-				<div class="modal-dialog">
+			<div id="deleteDataModal" class="modal hide fade in" data-bs-backdrop="static" >
+				<div class="modal-dialog modal-dialog-centered">
 					<div class="modal-content">
 						<div class="modal-header">
 							<div class="modal-title w-100">
-								<h2>Are You Sure?</h2>
+								<h2 class="text-center">Are You Sure?</h2>
 							</div>
 						</div>
 						<div class="modal-body">
 							<h2>Do you really want to delete this data? This process won't be undone.</h2>
 						</div>
-						<div class="modal-footer">
+						<div class="modal-footer text-center">
 							<button type="button" class="btn btn-default" data-bs-dismiss="modal">Cancel</button>
-							<button type="button" id="delete_Data" class="btn btn-danger">Delete</button>
+							<button type="button" id="delete_data" class="btn btn-danger">Delete</button>
 						</div>
 					</div>
 				</div>
@@ -118,7 +131,7 @@
 
 		<!-- Edit Modal -->
 		<div class="editData-modal">
-			<div id="editDataModal" class="modal">
+			<div id="editDataModal" class="modal fade">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -126,7 +139,7 @@
 								<button type="button" class="btn close" data-bs-dismiss="modal">X</button>
 						</div>
 						<div class="modal-body">
-							<form>
+							<form id="myForm">
 								<label for="id" class="form-text">Id</label>
 								<input type="text" name="id" id="id" class="form-control" value="">
 								<label for="name" class="form-text">Name</label>
@@ -143,7 +156,7 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-bs-dismiss="modal">Cancel</button>
-							<button type="button" id="update_Data" class="btn btn-success">Update</button>
+							<button type="button" id="update_data" class="btn btn-success">Update</button>
 						</div>
 					</div>
 				</div>
@@ -219,7 +232,7 @@
     }
   });
 });
- </script> -->
+ </script> 
 <!--<script type="text/javascript">
  		$( function() {
 	 		$("#newbdate").datepicker({
