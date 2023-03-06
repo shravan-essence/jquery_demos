@@ -29,10 +29,14 @@ $(document).ready(function(){
       data: key
     });
   });
-
   let datatable = $("#Mytable").DataTable({
-    columns: cols
+    columns: cols,
+    "language": {
+            "info":"Page No. _PAGE_ of _PAGES_"
+          }
   });
+  
+  $("#Mytable_info").html("hello");
 
   datatable.rows.add(JSON.parse(localStorage.getItem("mydata"))).draw();
 

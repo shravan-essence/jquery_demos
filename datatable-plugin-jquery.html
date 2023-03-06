@@ -15,7 +15,6 @@
  	<!-- Datepicker plugin -->
   <script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
   <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-
 	<!--JQuery validation CDN links-->
 	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
 	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>	
@@ -28,7 +27,7 @@
 		}
 		.dataTable tr:hover {
 			background-color: gray;
-			color: black;
+			color: white;
 		}
 		.crudbtn div {
 			display: inline;
@@ -76,8 +75,8 @@
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
-								<h2 class="modal-title w-100">Add New Order</h2>
-								<button class="btn btn-default closeBtn" data-bs-dismiss="modal">X</button>
+							<h2 class="modal-title w-100">Add New Order</h2>
+							<button class="btn btn-default closeBtn" data-bs-dismiss="modal">X</button>
 						</div>
 						<div class="modal-body">
 							<form id="myForm" method="POST">
@@ -99,10 +98,6 @@
 								</div>
 							</form>
 						</div>
-					  <!-- <div class="modal-footer">
-							<button type="button" class="btn btn-default" data-bs-dismiss="modal">Cancel</button>
-							<input type="submit" id="add_new_data" class="btn btn-success" value="Add">
-						</div>  -->
 					</div>
 				</div>
 			</div>
@@ -184,7 +179,8 @@
   $("#myForm").validate({
     rules :{
       id:{
-        required: true
+        required: true,
+        pattern: /^[0-9/]*$/
       },
       name:{
         required: true,
@@ -197,7 +193,8 @@
         pattern: /^[a-zA-Z\s]+$/ 
       },
       age: {
-        required: true
+        required: true,
+        pattern:/^[0-9/]*$/
       },
       bdate: {
         required:true
@@ -208,7 +205,8 @@
     },
     messages: {
       id: {
-        required: "Please enter Id"
+        required: "Please enter Id",
+        pattern: "Please enter only numbers"
       },
       name: {
         required: "Please enter first name",
@@ -221,7 +219,8 @@
         pattern: "Please enter only letters"
       },
       age: {
-        required: "Please enter age"
+        required: "Please enter age",
+        pattern: "Please enter only numbers"
       },
       bdate: {
         required:"Please enter birthdate"

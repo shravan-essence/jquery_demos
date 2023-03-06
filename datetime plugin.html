@@ -8,6 +8,10 @@
   <!-- <link rel="stylesheet" href="https://resources/demos/style.css"> -->
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.js" integrity="sha512-s5u/JBtkPg+Ff2WEr49/cJsod95UgLHbC00N/GglqdQuLnYhALncz8ZHiW/LxDRGduijLKzeYb7Aal9h3codZA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.css" integrity="sha512-LT9fy1J8pE4Cy6ijbg96UkExgOjCqcxAC7xsnv+mLJxSvftGVmmc236jlPTZXPcBRQcVOWoK1IJhb1dAjtb4lQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/i18n/jquery-ui-timepicker-addon-i18n.min.js" integrity="sha512-t2ZIJH81Sh+SWSb4BuA9en4j6fwja+sYOEXbqoepD9lJ+efUGD94gSWqdmgQchGmPez2ojECq4Fm6bKMUAzIiQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
   </head>
 <body>
   <label for="date">Date</label>
@@ -18,14 +22,12 @@
   <input type="text" id="from" name="from">
   <label for="to">to</label>
   <input type="text" id="to" name="to">
-  <br>
-  <br>
+  <br><br>
   <label for="restrict">to</label>
   <input type="text" id="restrict" name="restrict">
   <br><br>
-
   <p>Date: <input type="text" id="datepicker">&#xA0;<input type="text" id="alternate" size="30"></p>
- 
+  <p>Time: <input type="text" id="timepicker"></p>
    <script type="text/javascript">
     $( function() {
       var dateFormat = "mm/dd/yy",
@@ -61,10 +63,13 @@
       $("#date").datepicker({
         changeMonth: true,
         changeYear: true,
-        dateFormat: "dd MM yy"
       });
       $("#datepicker").datepicker({
-        dateFormat: "dd MM yy"
+        altField: "#alternate",
+        altFormat: "DD, d MM, yy"
+      });
+      $('#timepicker').timepicker({
+        controlType: 'select'
       });
     });
    </script>
